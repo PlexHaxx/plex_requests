@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php require '../vendor/phpmailer/phpmailer/PHPMailerAutoload.php'; ?>
 <?php
     if(!isset($_POST['title']) || strlen(trim($_POST['title'])) == 0){
         header('Location: index.php?err=' . urlencode("emptyTitle"));
@@ -20,9 +21,10 @@
     $dbh = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $emailMsg = "";
     try {
         $dbh->exec("INSERT INTO wishes (title, name) VALUES ('$title', '$name')");
-        // TODO: Email about the new wish
+        sendMail($title, $name);
     }
     catch (PDOException $e) {
         print $e->getMessage();
@@ -30,5 +32,34 @@
 
     $dbh = null;
 
-    header('Location: index.php?msg=' . urlencode("addedWish"));
+    header('Location: index.php?msg=' . urlencode("addedWish") . '&email=' . urlencode($emailMsg));
+?>
+
+<?php
+
+    function sendMail($title, $name) {
+        $mail = new PHPMailer;
+
+        $mail->isSMTP();
+        $mail->SMTPDebug = 1;
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'ssl';
+        $mail->Host = "smtp.gmail.com"
+        $mail->Port = 465;
+        $mail->IsHTML(true);
+        $mail->Username = "gunnartorfis@gmail.com";
+        $mail->Password = "m3zjuTusMgs82TdkT}";
+        $mail->SetFrom("wish@plex.gunnartorfis.is");
+        $mail->Subject = "Ný beiðni";
+        $mail->Body = "Titill: " . $title . ".\nUmbeðið af " . $name . ".";
+
+        if (!$mail->Send()) {
+            // echo "Mailer Error: " . $mail->ErrorInfo;
+            $emailMsg = "emailFailed";
+        }
+        else {
+            $emailMsg = "emailSuccess";
+        }
+    }
+
 ?>
