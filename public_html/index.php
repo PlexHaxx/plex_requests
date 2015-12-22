@@ -7,6 +7,10 @@
     if (isset($_GET['msg'])) {
         $msg = $_GET['msg'];
     }
+
+    if (isset($_GET['email'])) {
+        $email = $_GET['email'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,8 +72,11 @@
                                     <?php if ($error == "emptyName") : ?>
                                         <p class="emptyTitle">Það verður að vera nafn!</p>
                                     <?php endif; ?>
-                                    <?php if ($msg == "addedWish") : ?>
-                                        <p class="addedWish">Bætt við á óskalistann!</p>
+                                    <?php if ($msg == "addedWish" && $email == "emailSuccess") : ?>
+                                        <p class="addedWish">Bætt við á óskalistann, GT hefur verið látinn vita!</p>
+                                    <?php endif; ?>
+                                    <?php if ($msg == "addedWish" && $email == "emailFailed") : ?>
+                                        <p class="addedWish">Bætt við á óskalistann, en af einhverjum ástæðum fékk GT ekki email um það.</p>
                                     <?php endif; ?>
                                 </div>
                         </form>

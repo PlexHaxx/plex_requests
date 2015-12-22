@@ -44,7 +44,7 @@
         $mail->SMTPDebug = 1;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'ssl';
-        $mail->Host = "smtp.gmail.com";
+        $mail->Host = "smtp.gmail.com"
         $mail->Port = 465;
         $mail->IsHTML(true);
         $mail->Username = "gunnartorfis@gmail.com";
