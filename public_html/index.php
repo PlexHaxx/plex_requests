@@ -72,10 +72,10 @@
                                     <?php if ($error == "emptyName") : ?>
                                         <p class="emptyTitle">Það verður að vera nafn!</p>
                                     <?php endif; ?>
-                                    <?php if ($msg == "addedWish" && $email == "emailSuccess") : ?>
+                                    <?php if ($msg == "addedWish" && $email == "success") : ?>
                                         <p class="addedWish">Bætt við á óskalistann, GT hefur verið látinn vita!</p>
                                     <?php endif; ?>
-                                    <?php if ($msg == "addedWish" && $email == "emailFailed") : ?>
+                                    <?php if ($msg == "addedWish" && $email == "failed") : ?>
                                         <p class="addedWish">Bætt við á óskalistann, en af einhverjum ástæðum fékk GT ekki email um það.</p>
                                     <?php endif; ?>
                                 </div>

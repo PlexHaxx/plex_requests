@@ -21,10 +21,31 @@
     $dbh = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $emailMsg = "";
     try {
         $dbh->exec("INSERT INTO wishes (title, name) VALUES ('$title', '$name')");
-        sendMail($title, $name);
+        
+        $mail = new PHPMailer(); // create a new object
+        $mail->IsSMTP(); // enable SMTP
+        $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+        $mail->SMTPAuth = true; // authentication enabled
+        $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+        $mail->Host = "smtp.gmail.com";
+        $mail->Port = 465; // or 587
+        $mail->IsHTML(true);
+        $mail->Username = "gunnartorfis@gmail.com";
+        $mail->Password = "Fohf=bvAAp3dZ28ZjX";
+        $mail->SetFrom("example@gmail.com");
+        $mail->Subject = "Plex ósk";
+        $mail->Body = $name . ": " . $title;
+        $mail->AddAddress("gunnartorfis@gmail.com");
+
+         if(!$mail->Send()) {
+            $mailMsg = "fail";
+            echo "Mailer Error: " . $mail->ErrorInfo;
+            die();
+         } else {
+            $mailMsg = "success";
+         }
     }
     catch (PDOException $e) {
         print $e->getMessage();
@@ -32,34 +53,5 @@
 
     $dbh = null;
 
-    header('Location: index.php?msg=' . urlencode("addedWish") . '&email=' . urlencode($emailMsg));
-?>
-
-<?php
-
-    function sendMail($title, $name) {
-        $mail = new PHPMailer;
-
-        $mail->isSMTP();
-        $mail->SMTPDebug = 1;
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'ssl';
-        $mail->Host = "smtp.gmail.com"
-        $mail->Port = 465;
-        $mail->IsHTML(true);
-        $mail->Username = "gunnartorfis@gmail.com";
-        $mail->Password = "m3zjuTusMgs82TdkT}";
-        $mail->SetFrom("wish@plex.gunnartorfis.is");
-        $mail->Subject = "Ný beiðni";
-        $mail->Body = "Titill: " . $title . ".\nUmbeðið af " . $name . ".";
-
-        if (!$mail->Send()) {
-            // echo "Mailer Error: " . $mail->ErrorInfo;
-            $emailMsg = "emailFailed";
-        }
-        else {
-            $emailMsg = "emailSuccess";
-        }
-    }
-
+    header('Location: index.php?msg=' . urlencode("addedWish") . '&email=' . urlencode($mailMsg));
 ?>
