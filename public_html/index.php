@@ -41,7 +41,7 @@
                             <nav>
                                 <ul class="nav masthead-nav">
                                     <li class="active"><a href="#">Heim</a></li>
-                                    <li><a href="./wishes.php">Óskalistinn</a></li>
+                                    <li><a href="wishes.php">Óskalistinn</a></li>
                                 </ul>
                             </nav>
                         </div>
