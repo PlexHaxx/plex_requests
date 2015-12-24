@@ -7,7 +7,7 @@
 
         foreach($x->channel->item as $entry) {
             echo "<tr>";
-            echo "<th><a href='$entry->link' title='$entry->title'>" . $entry->title . "</a></th>";
+            echo "<th><a target='_blank' href='$entry->link' title='$entry->title'>" . $entry->title . "</a></th>";
             echo "</tr>";
         }
     }
