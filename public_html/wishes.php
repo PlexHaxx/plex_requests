@@ -52,76 +52,64 @@
     </head>
 
     <body>
-
         <div class="site-wrapper">
-
-            <div class="site-wrapper-inner">
-
-                <div class="cover-container">
-
-                    <div class="masthead clearfix">
-                        <div class="inner">
-                            <h3 class="masthead-brand">Úr Fossagili beint í Plex!</h3>
-                            <nav>
-                                <ul class="nav masthead-nav">
-                                    <li><a href="index.php">Heim</a></li>
-                                    <li class="active"><a href="#">Óskalistinn</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-
-                    <div class="inner cover">
-                        <div class="wish-list not-downloaded">
-                            <h4>Á biðlista <span class="glyphicon glyphicon-pause" aria-hidden="true"></span></h4>
-                            <table class="table table-hover table-wishes">
-                                <thead>
-                                    <tr>
-                                        <th>Titill</th>
-                                        <th>Óskað eftir af</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach($result_pending as $wish) : ?>
-                                        <tr id="<?php echo $wish[0]; ?>">
-                                            <th><?php echo $wish[1]; ?></th>
-                                            <th><?php echo $wish[2]; ?></th>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="wish-list downloaded">
-                            <h4>Búið að sækja <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></h4>
-                            <table class="table table-hover table-wishes">
-                                <thead>
-                                    <tr>
-                                        <th>Titill</th>
-                                        <th>Óskað eftir af</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach($result_downloaded as $wish) : ?>
-                                        <tr>
-                                            <th><?php echo $wish[1]; ?></th>
-                                            <th><?php echo $wish[2]; ?></th>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="mastfoot">
-                        <div class="inner">
-                            <p>Unnið af Gunnari Torfa &copy; 2015</p>
-                        </div>
-                    </div>
-
-                </div>
-
+            <div class="inner">
+                <h3 class="masthead-brand">Úr Fossagili beint í Plex!</h3>
+                <nav>
+                    <ul class="nav masthead-nav">
+                        <li><a href="index.php">Heim</a></li>
+                        <li class="active"><a href="#">Óskalistinn</a></li>
+                        <li><a href="deildu.php">Nýtt á Deildu.net</a></li>
+                    </ul>
+                </nav>
             </div>
 
+            <div class="inner cover">
+                <div class="wish-list not-downloaded">
+                    <h4>Á biðlista <span class="glyphicon glyphicon-pause" aria-hidden="true"></span></h4>
+                    <table class="table table-hover table-wishes">
+                        <thead>
+                            <tr>
+                                <th>Titill</th>
+                                <th>Óskað eftir af</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($result_pending as $wish) : ?>
+                                <tr id="<?php echo $wish[0]; ?>">
+                                    <th><?php echo $wish[1]; ?></th>
+                                    <th><?php echo $wish[2]; ?></th>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="wish-list downloaded">
+                    <h4>Búið að sækja <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></h4>
+                    <table class="table table-hover table-wishes">
+                        <thead>
+                            <tr>
+                                <th>Titill</th>
+                                <th>Óskað eftir af</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($result_downloaded as $wish) : ?>
+                                <tr>
+                                    <th><?php echo $wish[1]; ?></th>
+                                    <th><?php echo $wish[2]; ?></th>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mastfoot">
+                <div class="inner">
+                    <p>Unnið af Gunnari Torfa &copy; 2015</p>
+                </div>
+            </div>
         </div>
 
         <!-- Bootstrap core JavaScript
