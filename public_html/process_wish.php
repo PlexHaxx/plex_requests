@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php require '../vendor/phpmailer/phpmailer/PHPMailerAutoload.php'; ?>
 <?php
     if(!isset($_POST['title']) || strlen(trim($_POST['title'])) == 0){
@@ -23,7 +22,7 @@
 
     try {
         $dbh->exec("INSERT INTO wishes (title, name) VALUES ('$title', '$name')");
-        
+
         $mail = new PHPMailer(); // create a new object
         $mail->IsSMTP(); // enable SMTP
         $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only

@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php
     if(!isset($_POST['id']) || strlen(trim($_POST['id'])) == 0){
         header('Location: index.php?err=' . urlencode("emptyTitle"));
