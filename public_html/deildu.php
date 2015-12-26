@@ -1,9 +1,12 @@
 <?php include('includes/httpful.phar'); ?>
 <?php
     function getFeed($feed_url) {
-
         $content = file_get_contents($feed_url);
         $x = new SimpleXmlElement($content);
+
+        $uri = "http://api.themoviedb.org/3/genre/movie/list?api_key=1e5387b55fe12efeb19db53ea9ca88a1";
+        $response = \Httpful\Request::get($uri)->send();
+        $all_genres = $response->body->genres;
 
         foreach($x->channel->item as $entry) {
             // ID: id
@@ -12,6 +15,7 @@
             // Plot: overview
             // Released: release_date
             // Backdrop path: backdrop_path (mynd)
+            // Genres: genre_ids
 
             $movie_title = $entry->title;
             $title = modifyTitle($movie_title);
@@ -20,14 +24,35 @@
             $uri = str_replace(" ","%20",$uri);
             $response = \Httpful\Request::get($uri)->send();
 
-            $imageURL =  "http://image.tmdb.org/t/p/w500" . $response->body->results[0]->poster_path;
+            if (count($response->body->results[0]) > 0) {
+                $imageURL =  "http://image.tmdb.org/t/p/w500" . $response->body->results[0]->poster_path;
+                $released_date = date("Y", $response->body->results[0]->release_date);
+                $genres = $response->body->results[0]->genre_ids;
 
-          ?><tr>
-                <th><img src="<?php echo $imageURL; ?>" alt="" style="width:200px;height:200px;"/></th>
-                <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $response->body->results[0]->original_title; ?>'><?php echo $response->body->results[0]->original_title; ?></a></th>
-                <th><?php echo $response->body->results[0]->release_date; ?>
-            </tr>
-          <?php
+                $genres_ids_matched = array();
+                for ($i = 0; $i < count($genres); $i++) {
+                    for ($j = 0; $j < count($all_genres); $j++) {
+                        if ($all_genres[$j]->id == $genres[$i]) {
+                            $genres_ids_matched[] = $j;
+                        }
+                    }
+                }
+
+              ?><tr>
+                    <th><img src="<?php echo $imageURL; ?>" alt="" style="width:140px;height:200px;"/></th>
+                    <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $response->body->results[0]->original_title; ?>'><?php echo $response->body->results[0]->original_title . ' (' . $released_date . ')'; ?></a></th>
+                    <th><?php echo $all_genres[$genres_ids_matched[0]]->name; ?>
+                </tr>
+              <?php
+            }
+            else { ?>
+                <tr>
+                      <th><img src="default_image.png" alt="" style="width:140px;height:200px;"/></th>
+                      <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $entry->title; ?>'><?php echo $entry->title; ?></a></th>
+                      <th><?php echo "#"; ?>
+                 </tr>
+            <?php
+            }
         }
     }
 ?>
@@ -38,7 +63,7 @@
         $words = explode(" ", $title);
         $indexes = array();
         for ($i = 0; $i < count($words); $i++) {
-            if (strpos(strtolower($words[$i]), 'brrip') === false && strpos(strtolower($words[$i]), 'bdrip') === false && strpos(strtolower($words[$i]), 'xvid') === false && strpos(strtolower($words[$i]), 'ac3') === false && strpos(strtolower($words[$i]), 'hive') === false && strpos(strtolower($words[$i]), 'dvdscr') === false && strpos(strtolower($words[$i]), 'hq') === false && strpos(strtolower($words[$i]), '1080p') === false && strpos(strtolower($words[$i]), '720p') === false && strpos(strtolower($words[$i]), 'x264') === false && strpos(strtolower($words[$i]), 'hdtv') === false && strpos(strtolower($words[$i]), 'dvdrip') === false && strpos(strtolower($words[$i]), 'dd5') === false && strpos(strtolower($words[$i]), 'uncut') === false && strpos(strtolower($words[$i]), 's0') === false && !ctype_digit($words[$i])) {
+            if (strpos(strtolower($words[$i]), 'brrip') === false && strpos(strtolower($words[$i]), 'bdrip') === false && strpos(strtolower($words[$i]), 'xvid') === false && strpos(strtolower($words[$i]), 'ac3') === false && strpos(strtolower($words[$i]), 'hive') === false && strpos(strtolower($words[$i]), 'dvdscr') === false && strpos(strtolower($words[$i]), 'hq') === false && strpos(strtolower($words[$i]), '1080p') === false && strpos(strtolower($words[$i]), '720p') === false && strpos(strtolower($words[$i]), 'x264') === false && strpos(strtolower($words[$i]), 'hdtv') === false && strpos(strtolower($words[$i]), 'dvdrip') === false && strpos(strtolower($words[$i]), 'dd5') === false && strpos(strtolower($words[$i]), 'uncut') === false && strpos(strtolower($words[$i]), 's0') === false && !ctype_digit($words[$i]) && strpos(strtolower($words[$i]), '[') === false && strpos(strtolower($words[$i]), ']') === false && strpos(strtolower($words[$i]), 'web') === false && strpos(strtolower($words[$i]), 'dd5') === false && strpos(strtolower($words[$i]), 'h264') === false && strpos(strtolower($words[$i]), '(') === false && strpos(strtolower($words[$i]), ')') === false) {
                 array_push($indexes, $i);
             }
         }
