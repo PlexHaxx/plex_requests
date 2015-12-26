@@ -154,8 +154,6 @@ body {
 
 .wish-list {
     background: #f2f5f5;
-    border: 2px solid;
-    border-radius: 25px;
 }
 
 .wish-list h4, .table-wishes thead tr th, .table-wishes tbody tr th {
@@ -167,13 +165,20 @@ body {
     margin-bottom: 40px;
 }
 
-/* RSS styles DEILDU */
 .table-wishes thead tr th {
     text-align: left;
 }
 
 .table-wishes tbody tr th {
     text-align: left;
+}
+
+.table-deildu tbody tr {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.table-deildu tbody tr:hover {
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .table-deildu thead tr th {
@@ -184,7 +189,7 @@ body {
 
 .table-deildu tbody tr th a {
     text-align: left;
-    color: #000;
+    color: #fff;
     text-shadow: 0 0 0;
 }
 

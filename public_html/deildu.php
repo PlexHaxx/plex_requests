@@ -38,18 +38,18 @@
                     }
                 }
 
-              ?><tr>
-                    <th><img src="<?php echo $imageURL; ?>" alt="" style="width:140px;height:200px;"/></th>
-                    <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $response->body->results[0]->original_title; ?>'><?php echo $response->body->results[0]->original_title . ' (' . $released_date . ')'; ?></a></th>
-                    <th><?php echo $all_genres[$genres_ids_matched[0]]->name; ?>
+              ?>
+                  <tr style="background: url('<?php echo "http://image.tmdb.org/t/p/w500" . $response->body->results[0]->backdrop_path; ?>') no-repeat 0 0;">
+                            <th><img src="<?php echo $imageURL; ?>" alt="" style="width:140px;height:200px;"/></th>
+                            <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $response->body->results[0]->original_title; ?>'><?php echo $response->body->results[0]->original_title . ' (' . $released_date . ')'; ?></a><br><?php echo $all_genres[$genres_ids_matched[0]]->name;?><br><br><p><?php echo $response->body->results[0]->overview; ?></p></th>
                 </tr>
+
               <?php
             }
             else { ?>
                 <tr>
                       <th><img src="default_image.png" alt="" style="width:140px;height:200px;"/></th>
                       <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $entry->title; ?>'><?php echo $entry->title; ?></a></th>
-                      <th><?php echo "#"; ?>
                  </tr>
             <?php
             }
@@ -96,7 +96,6 @@
                     <tr>
                         <th>Mynd</th>
                         <th>Titill</th>
-                        <th>Útgáfuár</th>
                     </tr>
                 </thead>
                 <tbody>
