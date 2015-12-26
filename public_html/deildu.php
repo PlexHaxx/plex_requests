@@ -39,9 +39,9 @@
                 }
 
               ?>
-                  <tr style="background: url('<?php echo "http://image.tmdb.org/t/p/w500" . $response->body->results[0]->backdrop_path; ?>') no-repeat 0 0;">
-                            <th><img src="<?php echo $imageURL; ?>" alt="" style="width:140px;height:200px;"/></th>
-                            <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $response->body->results[0]->original_title; ?>'><?php echo $response->body->results[0]->original_title . ' (' . $released_date . ')'; ?></a><br><?php echo $all_genres[$genres_ids_matched[0]]->name;?><br><br><p><?php echo $response->body->results[0]->overview; ?></p></th>
+                  <tr>
+                    <th><img src="<?php echo $imageURL; ?>" alt="" style="width:140px;height:200px;"/></th>
+                    <th style="background: url('<?php echo "http://image.tmdb.org/t/p/w500" . $response->body->results[0]->backdrop_path; ?>') no-repeat; background-size=100%;"><div class="movie-info"><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $response->body->results[0]->original_title; ?>'><?php echo $response->body->results[0]->original_title . ' (' . $released_date . ')'; ?></a><br><?php echo $all_genres[$genres_ids_matched[0]]->name;?><br><br><p><?php echo $response->body->results[0]->overview; ?></p></div></th>
                 </tr>
 
               <?php
@@ -63,7 +63,7 @@
         $words = explode(" ", $title);
         $indexes = array();
         for ($i = 0; $i < count($words); $i++) {
-            if (strpos(strtolower($words[$i]), 'brrip') === false && strpos(strtolower($words[$i]), 'bdrip') === false && strpos(strtolower($words[$i]), 'xvid') === false && strpos(strtolower($words[$i]), 'ac3') === false && strpos(strtolower($words[$i]), 'hive') === false && strpos(strtolower($words[$i]), 'dvdscr') === false && strpos(strtolower($words[$i]), 'hq') === false && strpos(strtolower($words[$i]), '1080p') === false && strpos(strtolower($words[$i]), '720p') === false && strpos(strtolower($words[$i]), 'x264') === false && strpos(strtolower($words[$i]), 'hdtv') === false && strpos(strtolower($words[$i]), 'dvdrip') === false && strpos(strtolower($words[$i]), 'dd5') === false && strpos(strtolower($words[$i]), 'uncut') === false && strpos(strtolower($words[$i]), 's0') === false && !ctype_digit($words[$i]) && strpos(strtolower($words[$i]), '[') === false && strpos(strtolower($words[$i]), ']') === false && strpos(strtolower($words[$i]), 'web') === false && strpos(strtolower($words[$i]), 'dd5') === false && strpos(strtolower($words[$i]), 'h264') === false && strpos(strtolower($words[$i]), '(') === false && strpos(strtolower($words[$i]), ')') === false) {
+            if (strpos(strtolower($words[$i]), 'brrip') === false && strpos(strtolower($words[$i]), 'bdrip') === false && strpos(strtolower($words[$i]), 'xvid') === false && strpos(strtolower($words[$i]), 'ac3') === false && strpos(strtolower($words[$i]), 'hive') === false && strpos(strtolower($words[$i]), 'dvdscr') === false && strpos(strtolower($words[$i]), 'hq') === false && strpos(strtolower($words[$i]), '1080p') === false && strpos(strtolower($words[$i]), '720p') === false && strpos(strtolower($words[$i]), 'x264') === false && strpos(strtolower($words[$i]), 'hdtv') === false && strpos(strtolower($words[$i]), 'dvdrip') === false && strpos(strtolower($words[$i]), 'dd5') === false && strpos(strtolower($words[$i]), 'uncut') === false && strpos(strtolower($words[$i]), 's0') === false && !ctype_digit($words[$i]) && strpos(strtolower($words[$i]), '[') === false && strpos(strtolower($words[$i]), ']') === false && strpos(strtolower($words[$i]), 'web') === false && strpos(strtolower($words[$i]), 'dd5') === false && strpos(strtolower($words[$i]), 'h264') === false && strpos(strtolower($words[$i]), '(') === false && strpos(strtolower($words[$i]), ')') === false && strpos(strtolower($words[$i]), 'pldub') === false) {
                 array_push($indexes, $i);
             }
         }

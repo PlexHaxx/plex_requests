@@ -173,18 +173,36 @@ body {
     text-align: left;
 }
 
-.table-deildu tbody tr {
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.table-deildu tbody tr:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
-
+/* TABLE DEILDU */
 .table-deildu thead tr th {
     text-align: left;
     color: #000;
     text-shadow: 0 0 0;
+}
+
+.table-deildu tbody tr {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.table-deildu tbody tr th:first-child {
+    padding: 0;
+}
+
+.table-deildu tbody tr th:last-child {
+    padding: 0 20px;
+    background: rgba(0,0,0,0.8);
+}
+
+.table-deildu .movie-info {
+    display: block;
+    background: rgba(0,0,0,0.3);
+    width: 100%;
+    height: 100%;
+    background-size: 100%;
+}
+
+.table-deildu tbody tr:hover {
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .table-deildu tbody tr th a {
