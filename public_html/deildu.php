@@ -38,11 +38,28 @@
                     }
                 }
 
+                $plot = $response->body->results[0]->overview;
+                if (strlen($plot) > 300)
+                    $plot = substr($plot, 0, 297) . '...';
               ?>
-                  <tr>
-                    <th><img src="<?php echo $imageURL; ?>" alt="" style="width:140px;height:200px;"/></th>
-                    <th style="background: url('<?php echo "http://image.tmdb.org/t/p/w500" . $response->body->results[0]->backdrop_path; ?>') no-repeat; background-size=100%;"><div class="movie-info"><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $response->body->results[0]->original_title; ?>'><?php echo $response->body->results[0]->original_title . ' (' . $released_date . ')'; ?></a><br><?php echo $all_genres[$genres_ids_matched[0]]->name;?><br><br><p><?php echo $response->body->results[0]->overview; ?></p></div></th>
-                </tr>
+                      <tr>
+                        <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $response->body->results[0]->original_title; ?>'><img class="poster-image" src="<?php echo $imageURL; ?>" alt=""/></a></th>
+                        <th>
+                            <div class="movie-background" style="background: url('<?php echo "http://image.tmdb.org/t/p/w500" . $response->body->results[0]->backdrop_path; ?>') no-repeat center center; background-size: 100%;">
+                                <div class="movie-background-overlay">
+                                        <a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $response->body->results[0]->original_title; ?>'>
+                                            <div class="movie-info">
+                                                <h2><?php echo $response->body->results[0]->original_title . ' (' . $released_date . ')'; ?></h2>
+                                                <p class="movie-genre"><?php echo $all_genres[$genres_ids_matched[0]]->name;?></p>
+                                                <p class="movie-plot"><?php echo $plot ?></p>
+                                            </div>
+                                        </a>
+                                    </a>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+
 
               <?php
             }
@@ -63,7 +80,7 @@
         $words = explode(" ", $title);
         $indexes = array();
         for ($i = 0; $i < count($words); $i++) {
-            if (strpos(strtolower($words[$i]), 'brrip') === false && strpos(strtolower($words[$i]), 'bdrip') === false && strpos(strtolower($words[$i]), 'xvid') === false && strpos(strtolower($words[$i]), 'ac3') === false && strpos(strtolower($words[$i]), 'hive') === false && strpos(strtolower($words[$i]), 'dvdscr') === false && strpos(strtolower($words[$i]), 'hq') === false && strpos(strtolower($words[$i]), '1080p') === false && strpos(strtolower($words[$i]), '720p') === false && strpos(strtolower($words[$i]), 'x264') === false && strpos(strtolower($words[$i]), 'hdtv') === false && strpos(strtolower($words[$i]), 'dvdrip') === false && strpos(strtolower($words[$i]), 'dd5') === false && strpos(strtolower($words[$i]), 'uncut') === false && strpos(strtolower($words[$i]), 's0') === false && !ctype_digit($words[$i]) && strpos(strtolower($words[$i]), '[') === false && strpos(strtolower($words[$i]), ']') === false && strpos(strtolower($words[$i]), 'web') === false && strpos(strtolower($words[$i]), 'dd5') === false && strpos(strtolower($words[$i]), 'h264') === false && strpos(strtolower($words[$i]), '(') === false && strpos(strtolower($words[$i]), ')') === false && strpos(strtolower($words[$i]), 'pldub') === false) {
+            if (strpos(strtolower($words[$i]), 'brrip') === false && strpos(strtolower($words[$i]), 'bdrip') === false && strpos(strtolower($words[$i]), 'xvid') === false && strpos(strtolower($words[$i]), 'ac3') === false && strpos(strtolower($words[$i]), 'hive') === false && strpos(strtolower($words[$i]), 'dvdscr') === false && strpos(strtolower($words[$i]), 'hq') === false && strpos(strtolower($words[$i]), '1080p') === false && strpos(strtolower($words[$i]), '720p') === false && strpos(strtolower($words[$i]), 'x264') === false && strpos(strtolower($words[$i]), 'hdtv') === false && strpos(strtolower($words[$i]), 'dvdrip') === false && strpos(strtolower($words[$i]), 'dd5') === false && strpos(strtolower($words[$i]), 'uncut') === false && strpos(strtolower($words[$i]), 's0') === false && !ctype_digit($words[$i]) && strpos(strtolower($words[$i]), '[') === false && strpos(strtolower($words[$i]), ']') === false && strpos(strtolower($words[$i]), 'web') === false && strpos(strtolower($words[$i]), 'dd5') === false && strpos(strtolower($words[$i]), 'h264') === false && strpos(strtolower($words[$i]), '(') === false && strpos(strtolower($words[$i]), ')') === false && strpos(strtolower($words[$i]), 'pldub') === false && strpos(strtolower($words[$i]), 'dd2') === false && strpos(strtolower($words[$i]), '3d') === false && strpos(strtolower($words[$i]), 'limited') === false && strpos(strtolower($words[$i]), 'isl') === false && strpos(strtolower($words[$i]), 'islenskur') === false && strpos(strtolower($words[$i]), 'íslenskur') === false && strpos(strtolower($words[$i]), 'ísl') === false && strpos(strtolower($words[$i]), 'txt') === false && strpos(strtolower($words[$i]), 'texti') === false && strpos(strtolower($words[$i]), 'texti') === false && strpos(strtolower($words[$i]), 'ensk') === false && strpos(strtolower($words[$i]), 'hd') === false && strpos(strtolower($words[$i]), 'fx') === false && strpos(strtolower($words[$i]), 'internal') === false && strpos(strtolower($words[$i]), 'festival') === false && strpos(strtolower($words[$i]), 'enskur-texti') === false && strpos(strtolower($words[$i]), 'aac') === false) {
                 array_push($indexes, $i);
             }
         }
@@ -94,8 +111,8 @@
             <table class="table table-hover table-deildu">
                 <thead>
                     <tr>
-                        <th>Mynd</th>
-                        <th>Titill</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
