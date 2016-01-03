@@ -144,6 +144,31 @@ body {
     text-align: left;
 }
 
+.wish-list {
+    background: #f2f5f5;
+    border-collapse:separate;
+    border:solid black 1px;
+    border-radius:6px;
+    -moz-border-radius:6px;
+}
+
+.wish-list h4, .table-wishes thead tr th, .table-wishes tbody tr th {
+    color: #000000;
+    text-shadow: 0 0 0;
+}
+
+.wish-list h4 {
+    padding-top: 30px;
+}
+
+.wish-list:first-child {
+    margin-bottom: 40px;
+}
+
+.table-wishes thead tr th, .table-wishes tbody tr th{
+    padding: 15px 40px;
+}
+
 .table-wishes thead tr th:last-child {
     text-align: right;
 }
@@ -152,17 +177,8 @@ body {
     text-align: right;
 }
 
-.wish-list {
-    background: #f2f5f5;
-}
-
-.wish-list h4, .table-wishes thead tr th, .table-wishes tbody tr th {
-    color: #000000;
-    text-shadow: 0 0 0;
-}
-
-.wish-list:first-child {
-    margin-bottom: 40px;
+.table-wishes tbody tr th {
+    font-weight: normal;
 }
 
 .table-wishes thead tr th {

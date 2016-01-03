@@ -45,7 +45,7 @@
         <div class="inner cover">
             <div class="wish-list not-downloaded">
                 <h4>Á biðlista <span class="glyphicon glyphicon-pause" aria-hidden="true"></span></h4>
-                <table class="table table-hover table-wishes">
+                <table class="table table-hover table-wishes table-striped">
                     <thead>
                         <tr>
                             <th>Titill</th>
@@ -64,7 +64,7 @@
             </div>
             <div class="wish-list downloaded">
                 <h4>Búið að sækja <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></h4>
-                <table class="table table-hover table-wishes">
+                <table class="table table-hover table-wishes table-striped">
                     <thead>
                         <tr>
                             <th>Titill</th>
