@@ -19,13 +19,12 @@
 
             $movie_title = $entry->title;
             $title = modifyTitle($movie_title);
-        //    echo $title . "<br>";
             $result = $client->getSearchApi()->searchMovies($title);
             $movie = array_values($result)[1][0];
 
             if (count($movie) > 0) {
                 $imageURL =  "http://image.tmdb.org/t/p/w500" . $movie['poster_path'];
-                $released_date = date("Y", $movie['release_date']);
+                $released_date = substr($movie['release_date'], 0, 4);
                 $genres = $movie['genre_ids'];
 
                 $genres_ids_matched = array();
@@ -115,7 +114,7 @@
                 }
             }
         }
-        
+
         for ($i = 0; $i < count($indexes); $i++) {
             $modified_title .= $words[$indexes[$i]] . " ";
         }
