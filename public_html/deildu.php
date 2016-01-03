@@ -8,6 +8,13 @@
         $client = new \Tmdb\Client($token);
         $repository = new \Tmdb\Repository\MovieRepository($client);
 
+        $all_genres = $client->getGenresApi()->getGenres();
+    //    var_dump($all_genres['genres'][0]['name']);
+        $all_genres_ids = array();
+        foreach ($all_genres['genres'] as $genre) {
+            array_push($all_genres_ids, $genre['id']);
+        }
+
         $movieIds = array();
 
         foreach($x->channel->item as $entry) {
@@ -18,7 +25,6 @@
             // Released: release_date
             // Backdrop path: backdrop_path (mynd)
             // Genres: genre_ids
-
 
             $movie_title = $entry->title;
             $title = modifyTitle($movie_title);
@@ -34,11 +40,22 @@
 
                     $genres_ids_matched = array();
                     for ($i = 0; $i < count($genres); $i++) {
-                        for ($j = 0; $j < count($all_genres); $j++) {
-                            if ($all_genres[$j]->id == $genres[$i]) {
-                                $genres_ids_matched[] = $j;
+                            for ($j = 0; $j < count($all_genres_ids); $j++) {
+                                if ($genres[$i] == $all_genres_ids[$j]) {
+                                    array_push($genres_ids_matched, $all_genres_ids[$j]);
+                                }
                             }
+                    }
+
+                    $genre_string = '';
+                    foreach ($all_genres['genres'] as $genre) {
+                        if (in_array($genre['id'], $genres_ids_matched)) {
+                            $genre_string .= ' ' . $genre['name'] . ',';
                         }
+                    }
+
+                    if (substr($genre_string, -1) == ',') {
+                        $genre_string = rtrim($genre_string, ',');
                     }
 
                     $plot = $movie['overview'];
@@ -53,7 +70,7 @@
                                             <a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'>
                                                 <div class="movie-info">
                                                     <h2><?php echo $movie['original_title'] . ' (' . $released_date . ')'; ?></h2>
-                                                    <p class="movie-genre"><?php echo $all_genres[$genres_ids_matched[0]]->name;?></p>
+                                                    <p class="movie-genre"><?php echo $genre_string; ?></p>
                                                     <p class="movie-plot"><?php echo $plot ?></p>
                                                 </div>
                                             </a>
