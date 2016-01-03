@@ -63,21 +63,23 @@
                         $plot = substr($plot, 0, 297) . '...';
                   ?>
                           <tr>
-                            <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'><img class="poster-image" src="<?php echo $imageURL; ?>" alt="" onerror="this.onerror=null;this.src='images/movie-default.jpg';"/></a></th>
-                            <th>
-                                <div class="movie-background" style="background: url('<?php echo "http://image.tmdb.org/t/p/w500" . $movie['backdrop_path']; ?>') no-repeat center center; background-size: 100%;">
-                                    <div class="movie-background-overlay">
-                                            <a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'>
-                                                <div class="movie-info">
-                                                    <h2><?php echo $movie['original_title'] . ' (' . $released_date . ')'; ?></h2>
-                                                    <p class="movie-genre"><?php echo $genre_string; ?></p>
-                                                    <p class="movie-plot"><?php echo $plot ?></p>
-                                                </div>
+                            <div class="top-buffer">
+                                <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'><img class="poster-image" src="<?php echo $imageURL; ?>" alt="" onerror="this.onerror=null;this.src='images/movie-default.jpg';"/></a></th>
+                                <th>
+                                    <div class="movie-background" style="background: url('<?php echo "http://image.tmdb.org/t/p/w500" . $movie['backdrop_path']; ?>') no-repeat center center; background-size: 100%;">
+                                        <div class="movie-background-overlay">
+                                                <a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'>
+                                                    <div class="movie-info">
+                                                        <h2><?php echo $movie['original_title'] . ' (' . $released_date . ')'; ?></h2>
+                                                        <p class="movie-genre"><?php echo $genre_string; ?></p>
+                                                        <p class="movie-plot"><?php echo $plot ?></p>
+                                                    </div>
+                                                </a>
                                             </a>
-                                        </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </th>
+                                </th>
+                            </div>
                         </tr> <?php
                 }
             }
@@ -158,8 +160,7 @@
         </nav>
     </div>
     <div class="inner cover">
-        <div class="wish-list not-downloaded">
-            <table class="table table-hover table-deildu">
+            <table class="table table-deildu">
                 <thead>
                     <tr>
                         <th></th>
@@ -170,6 +171,5 @@
                     <?php getFeed("http://icetracker.org/get_rss.php?user=Jobs&cat=12,6,7&passkey=f22615c5c857aae94708b379e1594ecd"); ?>
                 </tbody>
             </table>
-        </div>
     </div>
 <?php include 'includes/footer.php'; ?>

@@ -190,12 +190,18 @@ body {
 }
 
 /* TABLE DEILDU */
+
+.table-deildu th, .table-deildu td {
+     border-top: 2px solid black !important;
+ }
+
 .table-deildu thead {
     display: none;
 }
 
 .table-deildu tbody tr {
     background: rgba(0, 0, 0, 0.8);
+    margin-top: 10px;
 }
 
 .table-deildu tbody tr th {
@@ -228,6 +234,7 @@ body {
 .movie-info .movie-plot {
     padding: 5px 20px;
     line-height: 1.8;
+    font-weight: normal;
 }
 
 .table-deildu tbody th a {
