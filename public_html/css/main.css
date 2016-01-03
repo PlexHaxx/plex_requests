@@ -192,7 +192,7 @@ body {
 /* TABLE DEILDU */
 
 .table-deildu th, .table-deildu td {
-     border-top: 2px solid black !important;
+     border-top: none !important;
  }
 
 .table-deildu thead {
@@ -255,6 +255,64 @@ body {
     color: #fff;
     text-shadow: 0 0 0;
 }
+
+.table-deildu .table-deildu-actions {
+    height: 200px;
+}
+
+.table-deildu .table-deildu-action {
+    height: 33.33%;
+    width: 70px;
+}
+
+.table-deildu .table-deildu-action-double {
+    height: 50%;
+    width: 70px;
+}
+
+.table-deildu .action-first, .table-deildu .action-second, .table-deildu .action-third {
+    background: #5a7825;
+    position: relative;
+}
+
+.table-deildu .action-first img {
+    height: 50%;
+    width: 50%;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.table-deildu .action-second img {
+    height: 100%;
+    width: 100%;
+}
+
+.table-deildu .action-third img {
+    width: 100%;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.table-deildu .action-second {
+    background: #3498db;
+}
+
+
+.table-deildu .action-third {
+    background: #23091F;
+}
+
+
+
+
 
 
 /*

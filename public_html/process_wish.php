@@ -1,16 +1,22 @@
 <?php require '../vendor/phpmailer/phpmailer/PHPMailerAutoload.php'; ?>
 <?php
-    if(!isset($_POST['title']) || strlen(trim($_POST['title'])) == 0){
-        header('Location: index.php?err=' . urlencode("emptyTitle"));
-        die();
+    if (isset($_GET['title'])) {
+        $title = $_GET['title'];
+        $name = "Óþekktur";
     }
-    else if(!isset($_POST['name']) || strlen(trim($_POST['name'])) == 0){
-        header('Location: index.php?err=' . urlencode("emptyName"));
-        die();
-    }
+    else {
+        if(!isset($_POST['title']) || strlen(trim($_POST['title'])) == 0){
+            header('Location: index.php?err=' . urlencode("emptyTitle"));
+            die();
+        }
+        else if(!isset($_POST['name']) || strlen(trim($_POST['name'])) == 0){
+            header('Location: index.php?err=' . urlencode("emptyName"));
+            die();
+        }
 
-    $title = $_POST['title'];
-    $name = $_POST['name'];
+        $title = $_POST['title'];
+        $name = $_POST['name'];
+    }
 
     $servername = "localhost";
     $dbname = "plex_wishes";

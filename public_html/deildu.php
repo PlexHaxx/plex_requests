@@ -30,6 +30,7 @@
             $title = modifyTitle($movie_title);
             $result = $client->getSearchApi()->searchMovies($title);
             $movie = array_values($result)[1][0];
+            $movie_url = "https://www.themoviedb.org/movie/" . $movie['id'];
 
             if (count($movie) > 0) {
                 if (!in_array($movie['id'], $movieIds)) {
@@ -59,27 +60,42 @@
                     }
 
                     $plot = $movie['overview'];
-                    if (strlen($plot) > 300)
-                        $plot = substr($plot, 0, 297) . '...';
+                    if (strlen($plot) > 285)
+                        $plot = substr($plot, 0, 282) . '...';
+
+                    $original_title = $movie['original_title'];
+                    if (strlen($original_title) > 40)
+                        $original_title = substr($original_title, 0, 37) . '...';
                   ?>
                           <tr>
-                            <div class="top-buffer">
-                                <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'><img class="poster-image" src="<?php echo $imageURL; ?>" alt="" onerror="this.onerror=null;this.src='images/movie-default.jpg';"/></a></th>
-                                <th>
-                                    <div class="movie-background" style="background: url('<?php echo "http://image.tmdb.org/t/p/w500" . $movie['backdrop_path']; ?>') no-repeat center center; background-size: 100%;">
-                                        <div class="movie-background-overlay">
-                                                <a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'>
-                                                    <div class="movie-info">
-                                                        <h2><?php echo $movie['original_title'] . ' (' . $released_date . ')'; ?></h2>
-                                                        <p class="movie-genre"><?php echo $genre_string; ?></p>
-                                                        <p class="movie-plot"><?php echo $plot ?></p>
-                                                    </div>
-                                                </a>
+                            <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $original_title; ?>'><img class="poster-image" src="<?php echo $imageURL; ?>" alt="" onerror="this.onerror=null;this.src='images/movie-default.jpg';"/></a></th>
+                            <th>
+                                <div class="movie-background" style="background: url('<?php echo "http://image.tmdb.org/t/p/w500" . $movie['backdrop_path']; ?>') no-repeat center center; background-size: 100%;">
+                                    <div class="movie-background-overlay">
+                                            <a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $original_title; ?>'>
+                                                <div class="movie-info">
+                                                    <h2><?php echo $original_title . ' (' . $released_date . ')'; ?></h2>
+                                                    <p class="movie-genre"><?php echo $genre_string; ?></p>
+                                                    <p class="movie-plot"><?php echo $plot ?></p>
+                                                </div>
                                             </a>
-                                        </div>
+                                        </a>
                                     </div>
-                                </th>
-                            </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="table-deildu-actions">
+                                    <div class="table-deildu-action action-first">
+                                        <a href="process_wish.php?title=<?php echo $movie['original_title']; ?>"><img src="images/add_icon.png" alt="Add movie" /></a>
+                                    </div>
+                                    <div class="table-deildu-action action-second">
+                                        <a href="<?php echo $movie_url; ?>" target="_blank"><img src="images/themoviedb_icon.png" alt="TMDB" /></a>
+                                    </div>
+                                    <div class="table-deildu-action action-third">
+                                        <a href="<?php echo $entry->link; ?>" target="_blank"><img src="images/deildu_logo.jpg" alt="Deildu" /></a>
+                                    </div>
+                                </div>
+                            </th>
                         </tr> <?php
                 }
             }
@@ -100,6 +116,16 @@
                           </div>
                       </div>
                   </th>
+                  <th>
+                      <div class="table-deildu-actions">
+                          <div class="table-deildu-action-double action-first">
+                              <a href="process_wish.php?title=<?php echo $entry->title; ?>"><img src="images/add_icon.png" alt="Add movie" /></a>
+                          </div>
+                          <div class="table-deildu-action-double action-third">
+                              <a href="<?php echo $entry->link; ?>" target="_blank"><img src="images/deildu_logo.jpg" alt="Deildu" /></a>
+                          </div>
+                      </div>
+                  </th>
               </tr>
                 <?php
             }
@@ -117,7 +143,7 @@
                                 'dd5', 'uncut', '[', ']', 'web', 'dd5', 'h264', '(', ')', 'pldub', 'dd2', '3d', 'limited', 'isl', 'ensk', 'isl-texti',
                                 'islenskur', 'texti', 'txt', 'íslenskur', 'ísl', 'hd', 'fx', 'internal', 'festival', 'enskur-texti', 'know', 'cz-i',
                                 'webrip', 'hulu', 'aac', 'x264-phobos', 'aac2', '264-ntb', 'ac3-evo', 'aac-nft', 'x264-amiable', 'greek', 'x264-ichor',
-                                'x264-rusted'
+                                'x264-rusted', 'hive-cm8', 'x264-balkan', 'avi', 'x264-scared'
                             );
 
         for ($i = 0; $i < count($words); $i++) {
@@ -163,6 +189,7 @@
             <table class="table table-deildu">
                 <thead>
                     <tr>
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>
