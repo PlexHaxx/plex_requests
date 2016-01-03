@@ -46,7 +46,7 @@
                         $plot = substr($plot, 0, 297) . '...';
                   ?>
                           <tr>
-                            <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'><img class="poster-image" src="<?php echo $imageURL; ?>" alt=""/></a></th>
+                            <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'><img class="poster-image" src="<?php echo $imageURL; ?>" alt="" onerror="this.onerror=null;this.src='images/movie-default.jpg';"/></a></th>
                             <th>
                                 <div class="movie-background" style="background: url('<?php echo "http://image.tmdb.org/t/p/w500" . $movie['backdrop_path']; ?>') no-repeat center center; background-size: 100%;">
                                     <div class="movie-background-overlay">
@@ -67,7 +67,7 @@
             else {
                 ?>
                 <tr>
-                  <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $entry->title ?>'>Mynd vantar</th>
+                  <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $entry->title ?>'><img class="poster-image" src="images/movie-default.jpg" alt="Default poster"/></th>
                   <th>
                       <div class="movie-background">
                           <div class="movie-background-overlay">
