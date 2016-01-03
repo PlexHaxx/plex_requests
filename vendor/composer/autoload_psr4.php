@@ -6,4 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Symfony\\Component\\OptionsResolver\\' => array($vendorDir . '/symfony/options-resolver'),
+    'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
+    'React\\Promise\\' => array($vendorDir . '/react/promise/src'),
+    'GuzzleHttp\\Subscriber\\Retry\\' => array($vendorDir . '/guzzlehttp/retry-subscriber/src'),
+    'GuzzleHttp\\Subscriber\\Log\\' => array($vendorDir . '/guzzlehttp/log-subscriber/src'),
+    'GuzzleHttp\\Subscriber\\Cache\\' => array($vendorDir . '/guzzlehttp/cache-subscriber/src'),
+    'GuzzleHttp\\Stream\\' => array($vendorDir . '/guzzlehttp/streams/src'),
+    'GuzzleHttp\\Ring\\' => array($vendorDir . '/guzzlehttp/ringphp/src'),
+    'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
+    'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
+    '' => array($vendorDir . '/php-tmdb/api/lib'),
 );

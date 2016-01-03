@@ -25,7 +25,7 @@
 
         $mail = new PHPMailer(); // create a new object
         $mail->IsSMTP(); // enable SMTP
-        $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+        $mail->SMTPDebug = 0; // debugging: 1 = errors and messages, 2 = messages only
         $mail->SMTPAuth = true; // authentication enabled
         $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
         $mail->Host = "smtp.gmail.com";
@@ -33,21 +33,21 @@
         $mail->IsHTML(true);
         $mail->Username = "gunnartorfis@gmail.com";
         $mail->Password = "Fohf=bvAAp3dZ28ZjX";
-        $mail->SetFrom("example@gmail.com");
+        $mail->SetFrom("plex@gunnartorfis.is");
+        $mail->CharSet = "UTF-8";
         $mail->Subject = "Plex ósk";
         $mail->Body = $name . ": " . $title;
         $mail->AddAddress("gunnartorfis@gmail.com");
 
          if(!$mail->Send()) {
             $mailMsg = "fail";
-            echo "Mailer Error: " . $mail->ErrorInfo;
-            die();
+            // echo "Mailer Error: " . $mail->ErrorInfo;
          } else {
             $mailMsg = "success";
          }
     }
     catch (PDOException $e) {
-        print $e->getMessage();
+        // print $e->getMessage();
     }
 
     $dbh = null;
