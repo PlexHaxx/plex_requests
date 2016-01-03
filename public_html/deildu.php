@@ -8,6 +8,8 @@
         $client = new \Tmdb\Client($token);
         $repository = new \Tmdb\Repository\MovieRepository($client);
 
+        $movieIds = array();
+
         foreach($x->channel->item as $entry) {
             // ID: id
             // Poster: poster_path
@@ -17,46 +19,50 @@
             // Backdrop path: backdrop_path (mynd)
             // Genres: genre_ids
 
+
             $movie_title = $entry->title;
             $title = modifyTitle($movie_title);
             $result = $client->getSearchApi()->searchMovies($title);
             $movie = array_values($result)[1][0];
 
             if (count($movie) > 0) {
-                $imageURL =  "http://image.tmdb.org/t/p/w500" . $movie['poster_path'];
-                $released_date = substr($movie['release_date'], 0, 4);
-                $genres = $movie['genre_ids'];
+                if (!in_array($movie['id'], $movieIds)) {
+                    array_push($movieIds, $movie['id']);
+                    $imageURL =  "http://image.tmdb.org/t/p/w500" . $movie['poster_path'];
+                    $released_date = substr($movie['release_date'], 0, 4);
+                    $genres = $movie['genre_ids'];
 
-                $genres_ids_matched = array();
-                for ($i = 0; $i < count($genres); $i++) {
-                    for ($j = 0; $j < count($all_genres); $j++) {
-                        if ($all_genres[$j]->id == $genres[$i]) {
-                            $genres_ids_matched[] = $j;
+                    $genres_ids_matched = array();
+                    for ($i = 0; $i < count($genres); $i++) {
+                        for ($j = 0; $j < count($all_genres); $j++) {
+                            if ($all_genres[$j]->id == $genres[$i]) {
+                                $genres_ids_matched[] = $j;
+                            }
                         }
                     }
-                }
 
-                $plot = $movie['overview'];
-                if (strlen($plot) > 300)
-                    $plot = substr($plot, 0, 297) . '...';
-              ?>
-                      <tr>
-                        <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'><img class="poster-image" src="<?php echo $imageURL; ?>" alt=""/></a></th>
-                        <th>
-                            <div class="movie-background" style="background: url('<?php echo "http://image.tmdb.org/t/p/w500" . $movie['backdrop_path']; ?>') no-repeat center center; background-size: 100%;">
-                                <div class="movie-background-overlay">
-                                        <a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'>
-                                            <div class="movie-info">
-                                                <h2><?php echo $movie['original_title'] . ' (' . $released_date . ')'; ?></h2>
-                                                <p class="movie-genre"><?php echo $all_genres[$genres_ids_matched[0]]->name;?></p>
-                                                <p class="movie-plot"><?php echo $plot ?></p>
-                                            </div>
+                    $plot = $movie['overview'];
+                    if (strlen($plot) > 300)
+                        $plot = substr($plot, 0, 297) . '...';
+                  ?>
+                          <tr>
+                            <th><a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'><img class="poster-image" src="<?php echo $imageURL; ?>" alt=""/></a></th>
+                            <th>
+                                <div class="movie-background" style="background: url('<?php echo "http://image.tmdb.org/t/p/w500" . $movie['backdrop_path']; ?>') no-repeat center center; background-size: 100%;">
+                                    <div class="movie-background-overlay">
+                                            <a target='_blank' href='<?php echo $entry->link; ?>' title='<?php echo $movie['original_title']; ?>'>
+                                                <div class="movie-info">
+                                                    <h2><?php echo $movie['original_title'] . ' (' . $released_date . ')'; ?></h2>
+                                                    <p class="movie-genre"><?php echo $all_genres[$genres_ids_matched[0]]->name;?></p>
+                                                    <p class="movie-plot"><?php echo $plot ?></p>
+                                                </div>
+                                            </a>
                                         </a>
-                                    </a>
+                                    </div>
                                 </div>
-                            </div>
-                        </th>
-                    </tr> <?php
+                            </th>
+                        </tr> <?php
+                }
             }
             else {
                 ?>
