@@ -6,10 +6,8 @@
 
         $token  = new \Tmdb\ApiToken('1e5387b55fe12efeb19db53ea9ca88a1');
         $client = new \Tmdb\Client($token);
-        $repository = new \Tmdb\Repository\MovieRepository($client);
 
         $all_genres = $client->getGenresApi()->getGenres();
-    //    var_dump($all_genres['genres'][0]['name']);
         $all_genres_ids = array();
         foreach ($all_genres['genres'] as $genre) {
             array_push($all_genres_ids, $genre['id']);
@@ -145,7 +143,7 @@
                                 'webrip', 'hulu', 'aac', 'x264-phobos', 'aac2', '264-ntb', 'ac3-evo', 'aac-nft', 'x264-amiable', 'greek', 'x264-ichor',
                                 'x264-rusted', 'hive-cm8', 'x264-balkan', 'avi', 'x264-scared', 'dvdivx-lightning-internal', 'ac3-hevc', 'x265',
                                 'x264-ensor', 's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', '264-ntb', 'ac3-request', 'ac3-gly',
-                                'vain', 'unmarked', 'line-chewbacca', 'cam', 'x264-pars', 'web-dl'
+                                'vain', 'unmarked', 'line-chewbacca', 'cam', 'x264-pars', 'web-dl', 'x264-btchkek', 'ac3-evo', 'hdrip'
                             );
 
         for ($i = 0; $i < count($words); $i++) {
