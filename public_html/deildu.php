@@ -35,7 +35,7 @@
             if (count($movie) > 0) {
                 if (!in_array($movie['id'], $movieIds)) {
                     array_push($movieIds, $movie['id']);
-                    $imageURL =  "http://image.tmdb.org/t/p/w500" . $movie['poster_path'];
+                    $imageURL =  "http://image.tmdb.org/t/p/w500/" . $movie['poster_path'];
                     $released_date = substr($movie['release_date'], 0, 4);
                     $genres = $movie['genre_ids'];
 
@@ -143,7 +143,9 @@
                                 'dd5', 'uncut', '[', ']', 'web', 'dd5', 'h264', '(', ')', 'pldub', 'dd2', '3d', 'limited', 'isl', 'ensk', 'isl-texti',
                                 'islenskur', 'texti', 'txt', 'íslenskur', 'ísl', 'hd', 'fx', 'internal', 'festival', 'enskur-texti', 'know', 'cz-i',
                                 'webrip', 'hulu', 'aac', 'x264-phobos', 'aac2', '264-ntb', 'ac3-evo', 'aac-nft', 'x264-amiable', 'greek', 'x264-ichor',
-                                'x264-rusted', 'hive-cm8', 'x264-balkan', 'avi', 'x264-scared'
+                                'x264-rusted', 'hive-cm8', 'x264-balkan', 'avi', 'x264-scared', 'dvdivx-lightning-internal', 'ac3-hevc', 'x265',
+                                'x264-ensor', 's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', '264-ntb', 'ac3-request', 'ac3-gly',
+                                'vain', 'unmarked', 'line-chewbacca', 'cam', 'x264-pars', 'web-dl'
                             );
 
         for ($i = 0; $i < count($words); $i++) {
@@ -159,7 +161,7 @@
                     }
                 }
                 else {
-                    if (strlen((string)$words[$i]) < 4 && $i == 0) {
+                    if (strlen((string)$words[$i]) < 4 && intval($words[$i]) > 0 && intval($words[$i]) < 10) {
                         array_push($indexes, $i);
                     }
                 }
