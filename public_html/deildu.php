@@ -143,7 +143,8 @@
                                 'webrip', 'hulu', 'aac', 'x264-phobos', 'aac2', '264-ntb', 'ac3-evo', 'aac-nft', 'x264-amiable', 'greek', 'x264-ichor',
                                 'x264-rusted', 'hive-cm8', 'x264-balkan', 'avi', 'x264-scared', 'dvdivx-lightning-internal', 'ac3-hevc', 'x265',
                                 'x264-ensor', 's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', '264-ntb', 'ac3-request', 'ac3-gly',
-                                'vain', 'unmarked', 'line-chewbacca', 'cam', 'x264-pars', 'web-dl', 'x264-btchkek', 'hdrip', 'xvid-evo'
+                                'vain', 'unmarked', 'line-chewbacca', 'cam', 'x264-pars', 'web-dl', 'x264-btchkek', 'hdrip', 'xvid-evo', 'remastered',
+                                'x264-vomit', 'ac3-gn2', 'x264-lap', 'readnfo'
                             );
 
         for ($i = 0; $i < count($words); $i++) {
