@@ -137,17 +137,27 @@
         $words = explode(" ", $title);
         $indexes = array();
 
-        $skipped_words = array('brrip', 'bdrip', 'xvid', 'ac3', 'hive', 'dvdscr', 'hq', '1080p', '720p', '480p', 'x264', 'hdtv', 's0', 'dvdrip',
+    /*    $skipped_words = array('brrip', 'bdrip', 'xvid', 'ac3', 'hive', 'dvdscr', 'hq', '1080p', '720p', '480p', 'x264', 'hdtv', 's0', 'dvdrip',
                                 'dd5', 'uncut', '[', ']', 'web', 'dd5', 'h264', '(', ')', 'pldub', 'dd2', '3d', 'limited', 'isl', 'ensk', 'isl-texti',
                                 'islenskur', 'texti', 'txt', 'íslenskur', 'ísl', 'hd', 'fx', 'internal', 'festival', 'enskur-texti', 'know', 'cz-i',
                                 'webrip', 'hulu', 'aac', 'x264-phobos', 'aac2', '264-ntb', 'ac3-evo', 'aac-nft', 'x264-amiable', 'greek', 'x264-ichor',
                                 'x264-rusted', 'hive-cm8', 'x264-balkan', 'avi', 'x264-scared', 'dvdivx-lightning-internal', 'ac3-hevc', 'x265',
                                 'x264-ensor', 's01', 's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', '264-ntb', 'ac3-request', 'ac3-gly',
                                 'vain', 'unmarked', 'line-chewbacca', 'cam', 'x264-pars', 'web-dl', 'x264-btchkek', 'hdrip', 'xvid-evo', 'remastered',
-                                'x264-vomit', 'ac3-gn2', 'x264-lap', 'readnfo'
-                            );
+                                'x264-vomit', 'ac3-gn2', 'x264-lap', 'readnfo', 'x264-sparks', 'x264-ghouls'
+                            );*/
 
+        $hasYear = false;
         for ($i = 0; $i < count($words); $i++) {
+            if (is_numeric($words[$i]) && strlen((string)$words[$i]) == 4 && intval($words[$i]) > 1000 && intval($words[$i]) < 2200) {
+                $hasYear = true;
+            }
+
+            if (!$hasYear && !is_numeric($words[$i])) {
+                array_push($indexes, $i);
+            }
+
+            /*
             if (!in_array(strtolower($words[$i]), $skipped_words)) {
                 if (!is_numeric($words[$i])) {
                     if (strlen($words[$i]) != 1) {
@@ -163,15 +173,25 @@
                     if (strlen((string)$words[$i]) < 4 && intval($words[$i]) > 0 && intval($words[$i]) < 10) {
                         array_push($indexes, $i);
                     }
+                    else {
+
+                    }
                 }
             }
+            */
+
         }
 
         for ($i = 0; $i < count($indexes); $i++) {
             $modified_title .= $words[$indexes[$i]] . " ";
         }
 
-        return $modified_title;
+        if (count($indexes) > 0) {
+            return $modified_title;
+        }
+        else {
+            return $title;
+        }
     }
 ?>
 
