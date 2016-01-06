@@ -36,9 +36,9 @@
         <h3 class="masthead-brand">Úr Fossagili beint í Plex!</h3>
         <nav>
             <ul class="nav masthead-nav">
-                <li><a href="index.php">Heim</a></li>
+                <li><a href="/public_html/index.php">Heim</a></li>
                 <li class="active"><a href="wishes.php">Óskalistinn</a></li>
-                <li><a href="deildu.php">Nýjar myndir á Deildu.net</a></li>
+                <li><a href="deildu.php">Nýtt á Deildu.net</a></li>
             </ul>
         </nav>
     </div>

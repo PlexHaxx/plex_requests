@@ -1,4 +1,4 @@
-<?php require '../vendor/phpmailer/phpmailer/PHPMailerAutoload.php'; ?>
+<?php require '../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php'; ?>
 <?php
     if (isset($_GET['title'])) {
         $title = $_GET['title'];

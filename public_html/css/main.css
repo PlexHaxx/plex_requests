@@ -32,7 +32,6 @@ body {
 body {
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -105,7 +104,7 @@ body {
 
 .cover {
   padding: 0 20px;
-  margin-top: 80px;
+  margin-top: 50px;
 }
 .cover .btn-lg {
   padding: 10px 20px;
@@ -189,8 +188,41 @@ body {
     text-align: left;
 }
 
-/* TABLE DEILDU */
+/* NAV-BAR DEILDU */
+.nav-tabs {
+    border: 0;
+    background: #ccc;
+    margin-bottom: 8px;
+}
 
+.nav-tabs li a {
+    color: #5c5c5c;
+}
+
+.nav-tabs li.active {
+    background: #fff;
+    border: 0;
+}
+
+.nav-tabs li:first-child {
+    border-right: 4px solid #333;
+}
+
+ .nav-tabs li:last-child {
+     border-left: 4px solid #333;
+ }
+
+ .nav-tabs li a span img {
+     width: 18px;
+     height: 18px;
+     margin-right: 5px;
+ }
+
+.nav-tabs.nav-justified > .active > a {
+    border: 0;
+}
+
+/* TABLE DEILDU */
 .table-deildu th, .table-deildu td {
      border-top: none !important;
  }
