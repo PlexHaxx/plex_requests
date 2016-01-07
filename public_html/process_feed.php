@@ -1,5 +1,9 @@
 <?php
+// Turn off all error reporting
+error_reporting(1);
+?>
 
+<?php
 function getFeed($feed_url, $type) {
     // Type: Movie(0), TV(1), Animated(2)
 
@@ -167,6 +171,7 @@ function getFeed($feed_url, $type) {
 function modifyTitle($title) {
     $words = explode(" ", $title);
     $indexes = array();
+    $modified_title = '';
 
     $hasYear = false;
     for ($i = 0; $i < count($words); $i++) {

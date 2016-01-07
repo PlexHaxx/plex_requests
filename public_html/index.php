@@ -1,4 +1,6 @@
 <?php
+    $error = '';
+    $msg = '';
     if (isset($_GET['err'])) {
         $error = $_GET['err'];
     }
