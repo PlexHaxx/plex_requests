@@ -234,6 +234,8 @@ body {
 .table-deildu tbody tr {
     background: rgba(0, 0, 0, 0.8);
     margin-top: 10px;
+    box-sizing: border-box;
+    border-bottom: #333 solid 8px;
 }
 
 .table-deildu tbody tr th {
@@ -293,7 +295,7 @@ body {
 }
 
 .table-deildu .table-deildu-action {
-    height: 33.33%;
+    height: 33%;
     width: 70px;
 }
 
